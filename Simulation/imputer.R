@@ -107,9 +107,6 @@ imputer_gmmg = list(
         overlap = sapply(candidates$pattern, function(p)
           sum(strsplit(p,"")[[1]] == strsplit(orig_R,"")[[1]] & strsplit(orig_R,"")[[1]] == "1"))
         unique_id = candidates$unique_id[which.max(overlap)]
-      } else {
-        # if none exist, fall back to complete case
-        unique_id = which(pat.df$pattern == "11111111")
       }
     }
     
