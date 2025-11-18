@@ -76,3 +76,29 @@ MOOQT_crossfit = function(dat, folds, crossfit = 5, M = 20, imputers = list(), g
   
   return(list(results, out_tbl))
 }
+
+### Example on nacc data ###
+load("nacc_single.Rda")
+naccdata = fiveyear_wide
+naccdata = naccdata[, 2:ncol(naccdata)]
+nacc.completecases = naccdata[complete.cases(naccdata),]
+glasso_model = EBICglasso(cov(nacc.completecases),
+                          n = nrow(nacc.completecases), threshold = T)
+adj_mat = (abs(glasso_model) !=0 ) * 1
+diag(adj_mat) = 0
+colnames(adj_mat) = rownames(adj_mat) = colnames(nacc.completecases)
+qgraph(adj_mat, labels = colnames(nacc.completecases))
+g = igraph::graph_from_adjacency_matrix(adj_mat, mode = "undirected", diag = FALSE)
+
+imputers = list(
+  em         = imputer_em_mbpe,
+  nn_hotdeck = imputer_nn_hotdeck,
+  mean       = imputer_mean,
+  CCMV       = imputer_ccmv_gaussian,
+  mmg       = imputer_mmg,
+  mice      = imputer_mice
+)
+
+folds = sample(rep(1:3, length.out = nrow(naccdata)))
+res_MOOQTvar = MOOQT_crossfit(naccdata, folds = folds, crossfit = 3, M = 20, 
+                             imputers = imputers, graph = g)
