@@ -4,4 +4,4 @@ This repository contains an R implementation of the MOO (masking-one-out) algori
 
 The Simulation folder includes the functions for implementing the proposed algorithms, functions for the imputers (mean imputation, Expectation-Maximization (EM) algorithm, nearest-neighbor hot deck (NN HD), complete-case missing value (CCMV), Markov missing graph (MMG), and multiple imputation by chained equations (MICE), and helper functions for G-MMG and EM. The EM, CCMV, and MMG methods fit Gaussian models, where MMG uses the Gaussian-MMG specification. We provide examples in MOO.R and combined.R to illustrate how to implement the algorithms and how to visualize PI diagram. 
 
-The Read Data folder provides additional functions for implementing variable-wise MOO, MOORT, and MOOEN, as well as functions for the imputers and helper functions for MMG.  
+The Read data folder provides additional functions for implementing variable-wise MOO, MOORT, and MOOEN, as well as functions for the imputers and helper functions for MMG.  
