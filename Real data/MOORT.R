@@ -1,6 +1,6 @@
 # Implement MOORT on real data
 
-MOOQT_crossfit = function(dat, folds, crossfit = 5, M = 20, imputers = list(), graph = NULL) {
+MOORT_crossfit = function(dat, folds, crossfit = 5, M = 20, imputers = list(), graph = NULL) {
   
   n = nrow(dat)
   dat_NA = dat
@@ -100,5 +100,5 @@ imputers = list(
 )
 
 folds = sample(rep(1:3, length.out = nrow(naccdata)))
-res_MOOQTvar = MOOQT_crossfit(naccdata, folds = folds, crossfit = 3, M = 20, 
+res_MOORT = MOORT_crossfit(naccdata, folds = folds, crossfit = 3, M = 20, 
                              imputers = imputers, graph = g)
