@@ -65,8 +65,7 @@ MOORT_crossfit = function(dat, folds, crossfit = 5, M = 20, imputers = list(), g
   
   methods_vec = character()
   ks_stats_vec = numeric()
-  out_tbl = data.frame(method = character(), ks_stat = numeric(), 
-                       fail_rate = numeric(), mark = character())
+  out_tbl = data.frame(method = character(), ks_stat = numeric())
   
   for (name in names(results)) {
     S_vals = results[[name]]$S
